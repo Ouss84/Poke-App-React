@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "react-bootstrap/Card";
+
 import PokemonCard from "./PokemonCard";
 
 export default function Pokemons() {

@@ -1,21 +1,22 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
+import { Routes, Route } from "react-router-dom";
+
 import "./app.css";
 import Home from "./components/Home";
 import Pokemons from "./components/Pokemons";
-import Header from "./components/Header";
+import Layout from "./components/Layout";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="pokemons" element={<Pokemons />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="pokemons" element={<Pokemons />} />
+        </Route>
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 
