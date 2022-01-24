@@ -5,7 +5,6 @@ const PokemonCard = ({ pokData }) => {
   return (
     <div>
       <Card bg="dark" text="light">
-        <Card.Img variant="top" src={""} />
         <Card.Body>
           <Card.Title>{pokData.name}</Card.Title>
           <Card.Img
