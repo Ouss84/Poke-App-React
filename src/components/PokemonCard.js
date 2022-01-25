@@ -8,6 +8,7 @@ const PokemonCard = ({ pokData }) => {
         <Card.Body>
           <Card.Title>{pokData.name}</Card.Title>
           <Card.Img
+            style={{ height: "17rem" }}
             variant="top"
             src={pokData.sprites.other.dream_world.front_default}
           />

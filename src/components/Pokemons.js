@@ -3,25 +3,43 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 import PokemonCard from "./PokemonCard";
 
-export default function Pokemons() {
+const Pokemons = () => {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [nextPokemons, setNextPokemons] = useState(
+    "https://pokeapi.co/api/v2/pokemon/"
+  );
+
   useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/pokemon/").then((res) => {
-      const fetches = res.data.results.map((p) =>
-        axios.get(p.url).then((res) => res.data)
-      );
-      Promise.all(fetches).then((data) => {
-        setPokemons(data);
-        setIsLoading(false);
-      });
-    });
+    getPokemons();
   }, []);
+  const getPokemons = () => {
+    axios
+      .get(nextPokemons)
+      .catch((error) => {
+        console.log(error);
+      })
+      .then((res) => {
+        const fetches = res.data.results.map((p) =>
+          axios.get(p.url).then((res) => res.data)
+        );
+        setNextPokemons(res.data.next);
+
+        // console.log(nextPokemons);
+        // console.log(prevPokemons);
+
+        Promise.all(fetches).then((data) => {
+          setPokemons((prevState) => [...prevState, ...data]);
+          setIsLoading(false);
+        });
+      });
+  };
 
   // console.log(pokemons);
   return (
@@ -42,6 +60,11 @@ export default function Pokemons() {
             pokemons.map((pok) => <PokemonCard key={pok.name} pokData={pok} />)}
         </Row>
       </Container>
+      <Button variant="danger" size="lg" onClick={getPokemons}>
+        More Pokemons ...
+      </Button>
     </div>
   );
-}
+};
+
+export default Pokemons;
