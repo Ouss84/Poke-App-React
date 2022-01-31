@@ -57,7 +57,14 @@ const Pokemons = () => {
             </Spinner>
           )}
           {!isLoading &&
-            pokemons.map((pok) => <PokemonCard key={pok.name} pokData={pok} />)}
+            pokemons.map((pok) => (
+              <PokemonCard
+                key={pok.name}
+                name={pok.name}
+                image={pok.sprites.other.dream_world.front_default}
+                pokemonName={pok.name}
+              />
+            ))}
         </Row>
       </Container>
       <Button variant="danger" size="lg" onClick={getPokemons}>

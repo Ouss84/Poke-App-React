@@ -1,18 +1,19 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-
-const PokemonCard = ({ pokData }) => {
+import { Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+const PokemonCard = ({ name, image, pokemonName }) => {
   return (
     <div>
       <Card bg="dark" text="light">
         <Card.Body>
-          <Card.Title>{pokData.name}</Card.Title>
-          <Card.Img
-            style={{ height: "17rem" }}
-            variant="top"
-            src={pokData.sprites.other.dream_world.front_default}
-          />
-          <Card.Text></Card.Text>
+          <Card.Title>{name}</Card.Title>
+          <Card.Img style={{ height: "17rem" }} variant="top" src={image} />
+          <LinkContainer to={`/${pokemonName}`}>
+            <Button variant="outline-secondary" size="sm">
+              Details
+            </Button>
+          </LinkContainer>
         </Card.Body>
       </Card>
     </div>
