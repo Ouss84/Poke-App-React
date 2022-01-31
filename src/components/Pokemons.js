@@ -2,12 +2,13 @@ import React from "react";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Spinner from "react-bootstrap/Spinner";
+// import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 import PokemonCard from "./PokemonCard";
+import Loader from "./Loader";
 
 const Pokemons = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -51,11 +52,7 @@ const Pokemons = () => {
           lg={5}
           className="justify-content-between my-5 d-flex gap-3"
         >
-          {isLoading && (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          )}
+          {isLoading && <Loader />}
           {!isLoading &&
             pokemons.map((pok) => (
               <PokemonCard
