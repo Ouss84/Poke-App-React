@@ -18,7 +18,7 @@ const PokeSingle = () => {
       .then((res) => {
         setPokemon(res.data);
         setIsLoading(false);
-        console.log(pokemon);
+        // console.log(pokemon);
       });
   };
   useEffect(() => singlePokemonData(), []);
@@ -29,7 +29,11 @@ const PokeSingle = () => {
         <Card bg="light" text="dark" style={{ width: "18rem" }}>
           <Card.Title>{pokemon.name}</Card.Title>
           <Card.Body>
-            <img src={pokemon.sprites.other.dream_world.front_default} alt="" />
+            <img
+              src={pokemon.sprites.other.dream_world.front_default}
+              alt=""
+              style={{}}
+            />
             <p>Base experience: {pokemon.base_experience} </p>
             <p>Height: {pokemon.height} cm</p>
             <p>Weight: {pokemon.weight} kg </p>
